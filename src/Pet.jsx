@@ -1,28 +1,25 @@
-import { Link } from "react-router-dom";
-// Pet component that displays information about a pet
-const Pet = ({ name, animal, breed, images, location, id }) => {
-  // Default hero image if no images are provided
-  let hero = "http://pets-images.devs-apis.com/pets/none.jpg";
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
-  // If images array is not empty, use the first image as the hero image
+// Pet component to display individual pet details
+const Pet = (props) => {
+  // Destructure props to extract individual properties
+  const { name, animal, breed, images, location, id } = props;
+
+  // Default hero image if no images are provided
+  let hero = 'http://pets-images.dev-apis.com/pets/none.jpg';
   if (images.length) {
-    hero = images[0];
+    hero = images[0]; // Use the first image if images are provided
   }
 
   return (
-    // Link to the pet details page using the pet's id
+    // Link to the details page for the specific pet
     <Link to={`/details/${id}`} className="pet">
       <div className="image-container">
-        {/* Display the hero image */}
-        <img src={hero} alt={name} />
+        <img src={hero} alt={name} /> {/* Display the hero image */}
       </div>
       <div className="info">
-        {/* Display the pet's name */}
         <h1>{name}</h1>
-        {/* Display the pet's animal type, breed, and location */}
-        <h2>
-          {animal} - {breed} - {location}
-        </h2>
+        <h2>{`${animal} — ${breed} — ${location}`}</h2> {/* Display the pet's animal type, breed, and location */}
       </div>
     </Link>
   );
