@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 // Local cache to store breed lists for different animals
 const localCache = {};
@@ -8,7 +8,7 @@ export default function useBreedList(animal) {
   // State to store the list of breeds
   const [breedList, setBreedList] = useState([]);
   // State to store the status of the fetch operation
-  const [status, setStatus] = useState("unloaded");
+  const [status, setStatus] = useState('unloaded');
 
   // useEffect hook to fetch breed list whenever the animal changes
   useEffect(() => {
@@ -29,12 +29,10 @@ export default function useBreedList(animal) {
     async function requestBreedList() {
       // Clear the current breed list and set status to loading
       setBreedList([]);
-      setStatus("loading");
+      setStatus('loading');
 
       // Fetch breed list from the API
-      const res = await fetch(
-        `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
-      );
+      const res = await fetch(`http://pets-v2.dev-apis.com/breeds?animal=${animal}`);
       const json = await res.json();
 
       // Store the fetched breed list in the local cache
@@ -43,7 +41,7 @@ export default function useBreedList(animal) {
       // Update the breed list state with the fetched data
       setBreedList(localCache[animal]);
       // Set status to loaded
-      setStatus("loaded");
+      setStatus('loaded');
     }
   }, [animal]); // Dependency array to re-run the effect when the animal changes
 
